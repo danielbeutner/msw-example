@@ -11,10 +11,19 @@ function PostList() {
 
       try {
         const response = await fetch('/posts')
-        const { items } = await response.json()
 
+        console.log(response);
 
-        setPosts(items)
+        if(response.ok) {
+          const { items } = await response.json()
+
+          setPosts(items)
+        } else {
+          setError({
+            code: response.status,
+            message: response.statusText
+          })
+        }
       } catch (error) {
         setError(error)
       }
@@ -24,6 +33,8 @@ function PostList() {
 
     fetchPosts()
   }, [])
+
+  console.log(posts, error);
 
   // Catch and show the error
   if (error && error.message) {
@@ -36,7 +47,7 @@ function PostList() {
   }
 
   // Show message if we get an empty list
-  if (!isLoading && posts && posts.length === 0) {
+  if ((!isLoading && !posts) || posts.length === 0) {
     return <p>Oh snap. No posts yet!</p>
   }
 

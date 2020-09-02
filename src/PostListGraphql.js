@@ -18,8 +18,6 @@ function PostList() {
     `
   })
 
-  console.log(data, fetching, error);
-
   // Catch and show the error
   if (error && error.message) {
     return <p>{error.message}</p>
