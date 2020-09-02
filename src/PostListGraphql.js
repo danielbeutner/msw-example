@@ -2,7 +2,10 @@ import React from 'react'
 import { useQuery } from 'urql'
 
 function hasPosts(data) {
-  return data && data.postItems && data.postItems && data.postItems.edges && data.postItems.edges.length !== 0
+  return data 
+    && data.postItems 
+    && data.postItems.edges 
+    && data.postItems.edges.length !== 0
 }
 
 function PostList() {

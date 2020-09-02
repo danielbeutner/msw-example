@@ -11,16 +11,18 @@ function PostList() {
 
       try {
         const response = await fetch('/posts')
-
-        if(response.ok) {
-          const { items } = await response.json()
-
-          setPosts(items)
-        } else {
+        
+        if(!response.ok) {
           setError({
             code: response.status,
             message: response.statusText
           })
+        }
+
+        const { items } = await response.json()
+
+        if(response.ok && items.length > 0) {
+          setPosts(items)
         }
       } catch (error) {
         setError(error)
