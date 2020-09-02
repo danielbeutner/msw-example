@@ -1,6 +1,10 @@
 import React from 'react'
 import { useQuery } from 'urql'
 
+function hasPosts(data) {
+  return data && data.postItems && data.postItems && data.postItems.edges && data.postItems.edges.length !== 0
+}
+
 function PostList() {
   const [{ data, fetching, error }] = useQuery({
     query: `
@@ -17,7 +21,7 @@ function PostList() {
       }
     `
   })
-
+  
   // Catch and show the error
   if (error && error.message) {
     return <p>{error.message}</p>
@@ -29,7 +33,7 @@ function PostList() {
   }
 
   // Show message if we get an empty list
-  if (data && data.postItems && data.postItems && data.postItems.edges.length === 0) {
+  if (!fetching && !hasPosts(data)) {
     return <p>Oh snap. No posts yet!</p>
   }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 function PostList() {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState(undefined)
   const [error, setError] = useState(undefined)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -11,8 +11,6 @@ function PostList() {
 
       try {
         const response = await fetch('/posts')
-
-        console.log(response);
 
         if(response.ok) {
           const { items } = await response.json()
@@ -47,7 +45,7 @@ function PostList() {
   }
 
   // Show message if we get an empty list
-  if ((!isLoading && !posts) || posts.length === 0) {
+  if (!isLoading && !posts) {
     return <p>Oh snap. No posts yet!</p>
   }
 

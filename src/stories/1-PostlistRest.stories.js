@@ -13,6 +13,7 @@ export function PostsRest () {
 export function PostsRestNotFound () {
   const { worker, rest } = window.msw
 
+  // We simulate a 404 - Not found here
   worker.use(
     rest.get('/posts', (req, res, ctx) => {
       return res.once(
@@ -28,6 +29,7 @@ export function PostsRestNotFound () {
 export function PostsRestNoPosts () {
   const { worker, rest } = window.msw
 
+  // Response with no items
   worker.use(
     rest.get('/posts', (req, res, ctx) => {
       return res.once(

@@ -10,16 +10,43 @@ export function PostsGraphql () {
   return <PostListGraphql />
 }
 
-export function PostsGraphqlNotFound () {
+export function PostsGraphqlFailure () {
   const { worker, graphql } = window.msw
 
   worker.use(
-    graphql.query('/posts', (req, res, ctx) => {
+    graphql.query('Posts', (req, res, ctx) => {
       return res.once(
-        ctx.errors({
-          message: 'Not found',
-          location: []
-        }),
+        ctx.status(400, 'Bad Request'),
+        ctx.errors([
+          {
+            message: 'Failed request: Unknown reason',
+            locations: [],
+          },
+        ])
+      )
+    })
+  )
+
+  return <PostListGraphql />
+}
+
+export function PostsGraphqlNoPosts () {
+  const { worker, graphql } = window.msw
+
+  // No items
+  worker.use(
+    graphql.query('Posts', (req, res, ctx) => {
+      return res.once(
+        ctx.data({
+          postItems: {
+            // edges: [],
+            pageInfo: {
+              endCursor: null,
+              hasNextPage: false,
+            }
+          }
+  
+        })
       )
     })
   )
