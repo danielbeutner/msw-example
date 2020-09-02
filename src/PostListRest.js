@@ -32,8 +32,6 @@ function PostList() {
     fetchPosts()
   }, [])
 
-  console.log(posts, error);
-
   // Catch and show the error
   if (error && error.message) {
     return <p>{error.message}</p>

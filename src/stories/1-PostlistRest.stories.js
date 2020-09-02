@@ -34,7 +34,7 @@ export function PostsRestNoPosts () {
     rest.get('/posts', (req, res, ctx) => {
       return res.once(
         ctx.status(200),
-      ctx.json({ items: [], total: 0 })
+        ctx.json({ items: [], total: 0 })
       )
     })
   )

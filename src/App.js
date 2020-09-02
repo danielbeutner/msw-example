@@ -10,14 +10,14 @@ function App() {
         <h1>Msw example</h1>
       </header>
       <main className='App-main'>
-        <div>
+        <section>
           <h2>Graphql</h2>
           <PostListGraphql />
-        </div>
-        <div>
+        </section>
+        <section>
           <h2>REST</h2>
           <PostListRest />
-        </div>
+        </section>
       </main>
     </div>
   )
