@@ -7,4 +7,4 @@ test('renders learn react link', () => {
   const linkElement = getByText(/Storybook msw example/i)
 
   expect(linkElement).toBeInTheDocument()
-});
+})

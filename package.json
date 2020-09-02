@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "^3.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -17,7 +17,11 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "postinstall": "npx msw init public/"
+    "prebuild-storybook": "npm run install-msw",
+    "prestorybook": "npm run install-msw",
+    "prestart": "npm run install-msw",
+    "install-msw": "npx msw init public/",
+    "fix": "npx standard ./ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,12 +39,13 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^5.3.19",
-    "@storybook/addon-links": "^5.3.19",
-    "@storybook/addons": "^5.3.19",
+    "@storybook/addon-actions": "^6.0.4",
+    "@storybook/addon-links": "^6.0.4",
+    "@storybook/addons": "^6.0.4",
     "@storybook/preset-create-react-app": "^3.1.4",
-    "@storybook/react": "^5.3.19",
+    "@storybook/react": "^6.0.4",
     "faker": "^4.1.0",
-    "msw": "^0.20.4"
+    "msw": "^0.20.4",
+    "standard": "^14.3.4"
   }
 }
