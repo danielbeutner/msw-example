@@ -20,4 +20,6 @@
 .App-main {
   font-size: 1rem;
   max-width: 80vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

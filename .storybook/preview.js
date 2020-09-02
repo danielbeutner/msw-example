@@ -8,3 +8,14 @@ if (typeof global.process === 'undefined') {
     // but check whether there's an existing once, reusing it, if so.
     worker.start()
 }
+ 
+// Disabling the cache for Storybook
+const graphqlClient = createGraphqlClient({
+    ...clientOptions,
+    requestPolicy: 'network-only'
+})
+
+// Adding Graphql Provider
+addDecorator(story => (
+  <GraphqlProvider value={graphqlClient}>{story()}</GraphqlProvider>
+))

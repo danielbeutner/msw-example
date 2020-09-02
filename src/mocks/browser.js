@@ -1,4 +1,4 @@
-import { rest, setupWorker } from 'msw'
+import { rest,graphql, setupWorker } from 'msw'
 import { handlers } from './handlers'
 import faker from 'faker'
 export const worker = setupWorker(...handlers)
@@ -6,7 +6,8 @@ export const worker = setupWorker(...handlers)
 // Make the `worker` and `rest` references available globally,
 // so they can be accessed in both runtime and test suites.
 window.msw = {
-  worker,
+  faker,
+  graphql,
   rest,
-  faker
+  worker
 }

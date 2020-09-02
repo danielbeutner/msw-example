@@ -1,15 +1,23 @@
 import React from 'react'
 import './App.css'
-import PostList from './PostList'
+import PostListRest from './PostListRest'
+import PostListGraphql from './PostListGraphql'
 
-function App () {
+function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-        <h1>Storybook msw example</h1>
+        <h1>Msw example</h1>
       </header>
       <main className='App-main'>
-        <PostList />
+        <div>
+          <h2>Graphql</h2>
+          <PostListGraphql />
+        </div>
+        <div>
+          <h2>REST</h2>
+          <PostListRest />
+        </div>
       </main>
     </div>
   )
