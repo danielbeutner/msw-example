@@ -1,14 +1,14 @@
 import React from 'react'
 import { useQuery } from 'urql'
 
-function hasPosts(data) {
-  return data 
-    && data.postItems 
-    && data.postItems.edges 
-    && data.postItems.edges.length !== 0
+function hasPosts (data) {
+  return data &&
+    data.postItems &&
+    data.postItems.edges &&
+    data.postItems.edges.length !== 0
 }
 
-function PostList() {
+function PostList () {
   const [{ data, fetching, error }] = useQuery({
     query: `
       query Posts($first: Int, $after: String) {
@@ -24,7 +24,7 @@ function PostList() {
       }
     `
   })
-  
+
   // Catch and show the error
   if (error && error.message) {
     return <p>{error.message}</p>

@@ -1,3 +1,4 @@
+/* eslint-env node, jest */
 import React from 'react'
 import { render, waitFor } from './utils/testutils'
 import { server } from './mocks/server'
@@ -11,7 +12,7 @@ import { createGraphqlClient, clientOptions } from './graphql'
  * @param {Object} options - Some custom options to enhance tests
  * @param {Object} options.graphqlClient - A custom graphql client to use in the Provider
  */
-function renderComponent(responseOverride, options) {
+function renderComponent (responseOverride, options) {
   if (responseOverride) {
     server.use(responseOverride)
   }
@@ -42,25 +43,23 @@ describe('App', () => {
   })
 
   describe('graphql', () => {
-
     test('renders post list in graphql column', async () => {
       const { getAllByRole } = renderComponent()
-  
+
       await waitFor(() => {
         const element = getAllByRole('article')
-  
+
         return expect(element).toHaveLength(200)
       })
     })
 
     test('renders graphql error', async () => {
-
       // Being that the test above this runs first, this test will actually hit the cache
       // So to fix this, we want to ensure that we run the desired msw response override
       // By creating a totally new Provider instance with a new graphqlClient that is network-only
       const graphqlClient = createGraphqlClient({
         ...clientOptions,
-        requestPolicy: 'network-only',
+        requestPolicy: 'network-only'
       })
 
       const { getByText } = renderComponent(
@@ -70,21 +69,19 @@ describe('App', () => {
             ctx.errors([
               {
                 message: 'Failed request: Unknown reason',
-                locations: [],
-              },
+                locations: []
+              }
             ])
           )
         }), {
-          graphqlClient,
+          graphqlClient
         }
       )
-  
+
       await waitFor(() => {
         return expect(getByText(/Unknown reason/i)).toBeInTheDocument()
       })
-    })    
-  
- 
+    })
   })
 
   describe('rest', () => {
@@ -97,16 +94,10 @@ describe('App', () => {
           )
         })
       )
-  
+
       await waitFor(() => {
         return expect(getByText(/Not found/i)).toBeInTheDocument()
       })
     })
   })
-
-
 })
-
-
-
-

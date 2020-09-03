@@ -3,10 +3,10 @@ import faker from 'faker'
 
 /**
  * Generates a list of posts
- * @param {number} length 
+ * @param {number} length
  * @returns {Function} Returns a function which lists generated posts
  */
-function createPostList(length = 100) {
+function createPostList (length = 100) {
   const posts = []
 
   for (let index = 0; index < length; index++) {
@@ -44,14 +44,14 @@ export const handlers = [
             node: {
               id: post.id,
               title: post.title,
-              body: post.body,
+              body: post.body
             },
-            cursor: faker.random.alphaNumeric(16),
+            cursor: faker.random.alphaNumeric(16)
           })),
           // Additional page info
           pageInfo: {
             endCursor: faker.random.alphaNumeric(16),
-            hasNextPage: true,
+            hasNextPage: true
           }
         }
 

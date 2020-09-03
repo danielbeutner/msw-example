@@ -12,7 +12,7 @@
     "prestorybook": "npm run install-msw",
     "prestart": "npm run install-msw",
     "install-msw": "npx msw init public/",
-    "fix": "npx standard ./**/* --fix"
+    "fix": "npx standard \"**/*.js\" \"**/*.jsx\" --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

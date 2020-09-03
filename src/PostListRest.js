@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-function PostList() {
+function PostList () {
   const [posts, setPosts] = useState(undefined)
   const [error, setError] = useState(undefined)
   const [isLoading, setIsLoading] = useState(false)
@@ -10,9 +10,9 @@ function PostList() {
       setIsLoading(true)
 
       try {
-        const response = await fetch('/posts')
-        
-        if(!response.ok) {
+        const response = await window.fetch('/posts')
+
+        if (!response.ok) {
           setError({
             code: response.status,
             message: response.statusText
@@ -21,7 +21,7 @@ function PostList() {
 
         const { items } = await response.json()
 
-        if(response.ok && items.length > 0) {
+        if (response.ok && items.length > 0) {
           setPosts(items)
         }
       } catch (error) {
