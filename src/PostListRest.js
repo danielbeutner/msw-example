@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react'
 
-function PostList () {
+function PostListRest () {
+  const [url] = useState('/posts')
   const [posts, setPosts] = useState(undefined)
   const [error, setError] = useState(undefined)
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    let cancelFetch = false
+
     const fetchPosts = async () => {
+      
+
       setIsLoading(true)
 
       try {
-        const response = await window.fetch('/posts')
+        const response = await window.fetch(url)
+
+        if(cancelFetch) return
 
         if (!response.ok) {
           setError({
@@ -32,7 +39,11 @@ function PostList () {
     }
 
     fetchPosts()
-  }, [])
+
+    return () => {
+      cancelFetch = true
+    }
+  }, [url])
 
   // Catch and show the error
   if (error && error.message) {
@@ -59,4 +70,4 @@ function PostList () {
   )
 }
 
-export default PostList
+export default PostListRest

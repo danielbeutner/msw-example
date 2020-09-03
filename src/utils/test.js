@@ -4,8 +4,15 @@ import { render as renderFn } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 import {
   GraphqlProvider,
-  graphqlClient as defaultGraphqlClient
+  createGraphqlClient,
+  clientOptions
 } from '../graphql'
+
+// Disable the cache for Jest
+const defaultGraphqlClient = createGraphqlClient({
+  ...clientOptions,
+  requestPolicy: 'network-only'
+})
 
 function Providers ({ children, graphqlClient = defaultGraphqlClient }) {
   return (
@@ -15,8 +22,15 @@ function Providers ({ children, graphqlClient = defaultGraphqlClient }) {
   )
 }
 
+/**
+ * 
+ * @param {*} ui 
+ * @param {Object} options - Some custom options to enhance tests
+ * @param {Object} options.graphqlClient - A custom graphql client to use in the Provider
+ */
 function render (ui, options = {}) {
   const { graphqlClient } = options
+
   return renderFn(ui, {
     wrapper: graphqlClient
       ? ({ children }) => Providers({ children, graphqlClient })

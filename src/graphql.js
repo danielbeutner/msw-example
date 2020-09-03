@@ -67,7 +67,6 @@ function getFetchOptions () {
  */
 function handleError (error) {
   // @TODO: Implement error handling here!
-  console.error(error)
 }
 
 // Options for urql

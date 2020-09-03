@@ -8,7 +8,7 @@ function hasPosts (data) {
     data.postItems.edges.length !== 0
 }
 
-function PostList () {
+function PostListGraphql () {
   const [{ data, fetching, error }] = useQuery({
     query: `
       query Posts($first: Int, $after: String) {
@@ -50,4 +50,4 @@ function PostList () {
   )
 }
 
-export default PostList
+export default PostListGraphql

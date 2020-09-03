@@ -23,7 +23,7 @@ if (typeof global.process === 'undefined') {
   }
 }
 
-// Disabling the cache for Storybook
+// Disable the cache for Storybook
 const graphqlClient = createGraphqlClient({
   ...clientOptions,
   requestPolicy: 'network-only'
