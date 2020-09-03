@@ -20,8 +20,8 @@ export function PostsGraphqlFailure () {
         ctx.errors([
           {
             message: 'Failed request: Unknown reason',
-            locations: [],
-          },
+            locations: []
+          }
         ])
       )
     })
@@ -39,13 +39,13 @@ export function PostsGraphqlNoPosts () {
       return res.once(
         ctx.data({
           postItems: {
-            // edges: [],
+            edges: [],
             pageInfo: {
               endCursor: null,
-              hasNextPage: false,
+              hasNextPage: false
             }
           }
-  
+
         })
       )
     })

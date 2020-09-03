@@ -1,4 +1,4 @@
-import { rest,graphql, setupWorker } from 'msw'
+import { rest, graphql, setupWorker } from 'msw'
 import { handlers } from './handlers'
 import faker from 'faker'
 export const worker = setupWorker(...handlers)

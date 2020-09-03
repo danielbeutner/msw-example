@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
  * @param onError
  */
 const errorExchange = (onError) => ({
-  forward,
+  forward
 }) => {
   return operations$ =>
     pipe(
@@ -40,7 +40,7 @@ mergedExchanges.push(...defaultExchanges)
  * @description Extracts a authorization token (JWT) from local storage if possible
  * @returns Empty string or Bearer with JWT as string
  */
-function getToken() {
+function getToken () {
   try {
     const jwt = window.localStorage.getItem('authorization')
 
@@ -53,11 +53,11 @@ function getToken() {
 /**
  * @returns Returns fetch options
  */
-function getFetchOptions() {
+function getFetchOptions () {
   return {
     headers: {
-      Authorization: getToken(),
-    },
+      Authorization: getToken()
+    }
   }
 }
 
@@ -65,15 +65,16 @@ function getFetchOptions() {
  * @description Called on error
  * @param error
  */
-function handleError(error) {
+function handleError (error) {
   // @TODO: Implement error handling here!
+  return error
 }
 
 // Options for urql
 export const clientOptions = {
   url: 'https://localhost:9000/graphql',
   fetchOptions: () => getFetchOptions(),
-  exchanges: mergedExchanges,
+  exchanges: mergedExchanges
 }
 
 // In case you need to modify the client's options you can import this

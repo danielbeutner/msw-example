@@ -3,7 +3,7 @@ import './App.css'
 import PostListRest from './PostListRest'
 import PostListGraphql from './PostListGraphql'
 
-function App() {
+function App () {
   return (
     <div className='App'>
       <header className='App-header'>

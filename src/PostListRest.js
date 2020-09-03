@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react'
 
-function PostList() {
+function PostListRest () {
+  const [url] = useState('/posts')
   const [posts, setPosts] = useState(undefined)
   const [error, setError] = useState(undefined)
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    let cancelFetch = false
+
     const fetchPosts = async () => {
       setIsLoading(true)
 
       try {
-        const response = await fetch('/posts')
-        
-        if(!response.ok) {
+        const response = await window.fetch(url)
+
+        if (cancelFetch) return
+
+        if (!response.ok) {
           setError({
             code: response.status,
             message: response.statusText
@@ -21,7 +26,7 @@ function PostList() {
 
         const { items } = await response.json()
 
-        if(response.ok && items.length > 0) {
+        if (response.ok && items.length > 0) {
           setPosts(items)
         }
       } catch (error) {
@@ -32,7 +37,11 @@ function PostList() {
     }
 
     fetchPosts()
-  }, [])
+
+    return () => {
+      cancelFetch = true
+    }
+  }, [url])
 
   // Catch and show the error
   if (error && error.message) {
@@ -59,4 +68,4 @@ function PostList() {
   )
 }
 
-export default PostList
+export default PostListRest
