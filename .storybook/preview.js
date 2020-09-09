@@ -1,8 +1,9 @@
-const { addDecorator } = require('@storybook/react')
-const { createGraphqlClient, clientOptions, GraphqlProvider } = require('../src/graphql')
-const { graphql, rest } = require('msw')
-const faker = require('faker')
-const React = require('react')
+import { addDecorator } from '@storybook/react'
+import { createGraphqlClient, clientOptions, GraphqlProvider } from '../src/graphql'
+import { graphql, rest } from 'msw'
+import faker from 'faker'
+import React from 'react'
+import '../src/index.css'
 
 // Storybook executes this module in both bootstap phase (Node)
 // and a story's runtime (browser). However, cannot call `setupWorker`
