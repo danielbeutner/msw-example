@@ -7,6 +7,6 @@ export default {
   component: Welcome
 }
 
-export const ToStorybook = () => <Welcome showApp={linkTo('Button')} />
+export const ToStorybook = () => <Welcome showApp={linkTo('PostListGraphql')} />
 
 ToStorybook.storyName = 'to Storybook'
